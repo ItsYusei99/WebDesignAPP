@@ -1,59 +1,67 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+This repository contains the technological solution developed for Halcon, a construction material distributor. The system is a monolithic web application based on Laravel that automates internal logistics and sales processes, in addition to providing a customer-facing portal for real-time order tracking.
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+📋 Project Description
+The main objective is to digitize the order lifecycle, from the moment sales takes the order to physical delivery at the construction site, ensuring data integrity and improving communication between departments and with the final customer.
 
-## About Laravel
+The system addresses two key needs:
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+External Visibility: Customers can track their order status and view delivery evidence (photos) using only their customer number and invoice number, without needing to register.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Internal Management: An administrative dashboard with Role-Based Access Control (RBAC) for the Sales, Purchasing, Warehouse, and Route departments.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+🚀 Key Features
+Public Order Tracking: Simple interface for customers to check status (Ordered, In Process, In Route, Delivered).
 
-## Learning Laravel
+Strict Status Workflow: The order lifecycle is respected, and only specific roles can advance certain stages.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+Photographic Evidence: Functionality exclusive to the "Route" role to upload photos of loading and final delivery.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Soft Deletes (Borrado Lógico): Orders are not physically deleted from the database; they are archived and can be restored by an administrator.
 
-## Laravel Sponsors
+Roles and Permissions:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Admin: User and role management, order restoration.
 
-### Premium Partners
+Sales: Order creation and registration of fiscal data.
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+Warehouse: Inventory management and moving status to "In Process" / "In Route".
 
-## Contributing
+Purchasing: Management of missing materials.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Route: Physical delivery and uploading of evidence.
 
-## Code of Conduct
+🎨 Design and Architecture
+The development of this project was guided by prior requirements analysis and architectural design.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+UI/UX Prototype (Figma)
 
-## Security Vulnerabilities
+The complete user interface design, including the public view and administrative dashboard, can be viewed at the following interactive link:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+https://www.figma.com/design/fAAOEGN97V2RIwPw2WLzjf/Competence-1-Web-Design?node-id=8-184&t=rlAdWXcr5gEapMNt-1
 
-## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+Class Diagram (Database)
+
+This diagram illustrates the database structure, relationships between entities, and cardinality, ensuring data integrity (e.g., unique invoice numbers).
+
+![WhatsApp Image 2026-02-19 at 22 57 22](https://github.com/user-attachments/assets/af462636-615e-402c-898d-7b73337cfad0)
+
+
+Use-Case Diagram
+
+Illustrates the interactions of the different actors (Customer and Internal Roles) with the system. 
+
+![WhatsApp Image 2026-02-19 at 21 24 35](https://github.com/user-attachments/assets/84e5c9e8-d22d-474a-aa94-de8c2b3b4e85)
+
+
+🛠️ Tech Stack
+Backend Framework: Laravel 10.x (PHP 8.1+)
+
+Database: MySQL / MariaDB
+
+Frontend: Blade Templates with [Tailwind CSS / Bootstrap]
+
+Version Control: Git & GitHub
+
+Design: Figma
