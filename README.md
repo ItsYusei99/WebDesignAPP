@@ -1,6 +1,6 @@
 This repository contains the technological solution developed for Halcon, a construction material distributor. The system is a monolithic web application based on Laravel that automates internal logistics and sales processes, in addition to providing a customer-facing portal for real-time order tracking.
 
-📋 Project Description
+Project Description
 The main objective is to digitize the order lifecycle, from the moment sales takes the order to physical delivery at the construction site, ensuring data integrity and improving communication between departments and with the final customer.
 
 The system addresses two key needs:
@@ -9,7 +9,7 @@ External Visibility: Customers can track their order status and view delivery ev
 
 Internal Management: An administrative dashboard with Role-Based Access Control (RBAC) for the Sales, Purchasing, Warehouse, and Route departments.
 
-🚀 Key Features
+Key Features
 Public Order Tracking: Simple interface for customers to check status (Ordered, In Process, In Route, Delivered).
 
 Strict Status Workflow: The order lifecycle is respected, and only specific roles can advance certain stages.
@@ -30,7 +30,7 @@ Purchasing: Management of missing materials.
 
 Route: Physical delivery and uploading of evidence.
 
-🎨 Design and Architecture
+Design and Architecture
 The development of this project was guided by prior requirements analysis and architectural design.
 
 UI/UX Prototype (Figma)
@@ -55,7 +55,7 @@ Illustrates the interactions of the different actors (Customer and Internal Role
 ![WhatsApp Image 2026-02-19 at 21 24 35](https://github.com/user-attachments/assets/84e5c9e8-d22d-474a-aa94-de8c2b3b4e85)
 
 
-🛠️ Tech Stack
+Tech Stack
 Backend Framework: Laravel 10.x (PHP 8.1+)
 
 Database: MySQL / MariaDB
