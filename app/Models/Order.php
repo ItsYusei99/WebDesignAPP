@@ -1,5 +1,6 @@
 <?php
 
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -8,13 +9,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Order extends Model
 {
-    use HasFactory, SoftDeletes; // ¡Aquí activamos el borrado lógico!
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'invoice_number',
         'customer_number',
         'status',
         'process_name',
-        'evidence_photo',
+        'is_active',
+        'evidence_photo'
     ];
 }

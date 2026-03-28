@@ -73,4 +73,12 @@ class OrderController extends Controller
         Order::withTrashed()->find($id)->restore();
         return redirect()->route('orders.archived');
     }
+    public function publicSearch(Request $request)
+{
+    $order = null;
+    if ($request->has('invoice')) {
+        $order = Order::where('invoice_number', $request->invoice)->first();
+    }
+    return view('welcome', compact('order'));
+}
 }

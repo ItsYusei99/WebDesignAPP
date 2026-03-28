@@ -1,13 +1,15 @@
 <?php
 
 namespace Database\Seeders;
-
-use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Order;
+use App\Models\User;
+use App\Models\Department;
 
 class DatabaseSeeder extends Seeder
 {
+    
     use WithoutModelEvents;
 
     /**
@@ -15,7 +17,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        \App\Models\Order::factory(10)->create();
 
         User::factory()->create([
             'name' => 'Test User',
