@@ -23,5 +23,13 @@ class DatabaseSeeder extends Seeder
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
+
+    $nombres = ['Admin', 'Ventas', 'Almacén', 'Ruta', 'Compras'];
+
+    foreach ($nombres as $nombre) {
+        \App\Models\Department::create(['name' => $nombre]);
+    }
+
+    \App\Models\Order::factory(10)->create();
     }
 }

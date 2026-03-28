@@ -11,12 +11,11 @@ class Order extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = [
-        'invoice_number',
-        'customer_number',
-        'status',
-        'process_name',
-        'is_active',
-        'evidence_photo'
-    ];
+   protected $fillable = [
+    'invoice_number', 
+    'customer_number', 
+    'status', 
+    'process_name', 
+    'is_active'
+];
 }
