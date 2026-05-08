@@ -31,13 +31,15 @@
                     <a href="{{ route('clients.index') }}" style="display: block; background-color: #10b981; color: white; padding: 10px; border-radius: 6px; font-weight: bold; text-decoration: none;">Ir a Clientes &rarr;</a>
                 </div>
 
+                @if(auth()->user()->department_id == 1)
                 <div style="background-color: white; border: 1px solid #e5e7eb; border-radius: 10px; padding: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); text-align: center;">
                     <div style="font-size: 40px; margin-bottom: 15px;">👥</div>
                     <h4 style="font-size: 18px; font-weight: bold; color: #374151; margin-bottom: 10px;">Gestión de Usuarios</h4>
                     <p style="font-size: 14px; color: #6b7280; margin-bottom: 20px;">Alta de personal y asignación de roles.</p>
                     <a href="{{ route('users.index') }}" style="display: block; background-color: #6366f1; color: white; padding: 10px; border-radius: 6px; font-weight: bold; text-decoration: none;">Ir a Usuarios &rarr;</a>
                 </div>
-
+                @endif
+                
                 <div style="background-color: white; border: 1px solid #e5e7eb; border-radius: 10px; padding: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); text-align: center;">
                     <div style="font-size: 40px; margin-bottom: 15px;">🛠️</div>
                     <h4 style="font-size: 18px; font-weight: bold; color: #374151; margin-bottom: 10px;">Inventario</h4>

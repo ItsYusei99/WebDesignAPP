@@ -30,5 +30,9 @@ Para desplegar este proyecto en un entorno local, siga los siguientes pasos desd
    `php artisan migrate:fresh --seed`
 7. Generar el enlace simbólico del almacenamiento público para permitir la correcta visualización de las evidencias fotográficas:
    `php artisan storage:link`
-8. Iniciar el servidor local de desarrollo:
+8. Correr estos comandos:
+   `npm install`
+   `npm run dev`
+   `npm run build`
+9. Iniciar el servidor local de desarrollo:
    `php artisan serve`
