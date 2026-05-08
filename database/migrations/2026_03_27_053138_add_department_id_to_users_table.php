@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->foreignId('department_id')->nullable()->constrained('departments');
-            $table->boolean('is_active')->default(true);
+            // Solo dejamos el department_id, ya que is_active ya existe en la tabla principal
+            $table->foreignId('department_id')->nullable()->after('password')->constrained('departments');
         });
     }
 
@@ -24,7 +24,7 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropForeign(['department_id']);
-            $table->dropColumn(['department_id', 'is_active']);
+            $table->dropColumn(['department_id']);
         });
     }
 };

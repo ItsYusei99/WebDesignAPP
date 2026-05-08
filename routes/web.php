@@ -3,43 +3,61 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+use App\Models\Order;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-*/
 
-// 1. RUTA PÚBLICA: Buscador de facturas para clientes
-Route::get('/', [OrderController::class, 'publicSearch'])->name('home');
+Route::get('/', function () {
+    return view('welcome');
+})->name('welcome');
 
-// 2. RUTAS PROTEGIDAS: Requieren que el usuario esté logueado
+Route::post('/rastreo', function (Request $request) {
+    $request->validate([
+        'customer_number' => 'required',
+        'invoice_number' => 'required'
+    ]);
+
+    $order = Order::with('client')
+        ->whereHas('client', function($query) use ($request) {
+            $query->where('customer_number', $request->customer_number);
+        })
+        ->where('invoice_number', $request->invoice_number)
+        ->first();
+
+    if (!$order) {
+        return back()->with('error', 'No se encontró ningún pedido con esos datos. Verifica tu número de cliente y factura.');
+    }
+
+    return view('welcome', compact('order'));
+})->name('rastreo.search');
+
+
+
 Route::middleware(['auth', 'verified'])->group(function () {
     
-    // Dashboard principal
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
 
-    // Gestión de Usuarios (CRUD completo)
     Route::resource('users', UserController::class);
 
-    // Gestión de Órdenes (CRUD completo)
+    Route::resource('clients', ClientController::class);
+
+    Route::resource('products', ProductController::class);
+
+    Route::get('/orders/archived', [OrderController::class, 'archived'])->name('orders.archived');
+    Route::post('/orders/{id}/restore', [OrderController::class, 'restore'])->name('orders.restore');
+    
+    Route::post('/orders/{order}/update-status', [OrderController::class, 'updateStatus'])->name('orders.updateStatus');
+    
     Route::resource('orders', OrderController::class);
 
-    // Ruta específica para actualizar estatus y subir fotografía de evidencia
-    Route::post('/orders/{order}/update-status', [OrderController::class, 'updateStatus'])->name('orders.updateStatus');
-
-    // Rutas para el manejo de órdenes archivadas (Borrado Lógico)
-    Route::get('/archived-orders', [OrderController::class, 'archived'])->name('orders.archived');
-    Route::post('/orders/{id}/restore', [OrderController::class, 'restore'])->name('orders.restore');
-
-    // Rutas de Perfil (Generadas por Breeze)
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// Rutas de autenticación (Login, Registro, etc. generadas por Breeze)
 require __DIR__.'/auth.php';

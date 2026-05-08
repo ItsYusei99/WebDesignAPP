@@ -25,7 +25,7 @@ class UserController extends Controller
             'password' => bcrypt($request->password),
             'department_id' => $request->department_id,
         ]);
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('success', 'Usuario creado exitosamente.');
     }
 
     public function edit(User $user) {
@@ -35,6 +35,16 @@ class UserController extends Controller
 
     public function update(Request $request, User $user) {
         $user->update($request->all());
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('success', 'Usuario actualizado exitosamente.');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(User $user) {
+        // Al ejecutar delete(), Laravel aplicará el SoftDeletes que se configuró en el Modelo
+        $user->delete();
+        
+        return redirect()->route('users.index')->with('success', 'Usuario eliminado exitosamente.');
     }
 }
